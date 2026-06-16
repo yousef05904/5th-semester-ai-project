@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='style.css') }}">
+  </head>
+  <body>
+    <main class="page">
+      <section class="toolbar">
+        <div>
+          <h1>{{ title }}</h1>
+          <p>{{ message }}</p>
+        </div>
+        <div class="actions">
+          <a class="button secondary" href="/">Back</a>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
