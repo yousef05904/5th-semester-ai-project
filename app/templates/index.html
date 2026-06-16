@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AI Media Monitoring MVP</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='style.css') }}">
+  </head>
+  <body>
+    <main class="page">
+      <section class="toolbar">
+        <div>
+          <h1>AI Media Monitoring MVP</h1>
+          <p>Select a region and run monitoring to find construction, renovation, landscaping, infrastructure, and tender leads.</p>
+        </div>
+      </section>
+
+      <section class="panel">
+        <form action="/run" method="post" class="run-form">
+          <label for="region_key">Region / city</label>
+          <div class="form-row">
+            <select id="region_key" name="region_key" required>
+              {% for region in regions %}
+                <option value="{{ region.key }}">{{ region.display_name }}</option>
+              {% endfor %}
+            </select>
+            <button type="submit">Run Monitoring</button>
+          </div>
+        </form>
+      </section>
+    </main>
+  </body>
+</html>
