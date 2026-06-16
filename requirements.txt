@@ -1,0 +1,15 @@
+fastapi>=0.111.0
+uvicorn>=0.30.0
+jinja2>=3.1.4
+python-multipart>=0.0.9
+sqlmodel>=0.0.21
+sqlalchemy>=2.0.30
+pandas>=2.2.2
+openpyxl>=3.1.5
+python-dotenv>=1.0.1
+openai>=1.40.0
+duckduckgo-search>=6.2.0
+trafilatura>=1.9.0
+requests>=2.31.0
+beautifulsoup4>=4.12.3
+pydantic>=2.7.0
