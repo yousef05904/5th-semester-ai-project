@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Monitoring Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='style.css') }}">
+  </head>
+  <body>
+    <main class="page wide">
+      <section class="toolbar">
+        <div>
+          <h1>Monitoring Results</h1>
+          <p>{{ run.city }} / {{ run.region_name }}</p>
+        </div>
+        <div class="actions">
+          <a class="button secondary" href="/">Back</a>
+          <a class="button" href="/download/{{ run.id }}/excel">Download Excel</a>
+          <a class="button" href="/download/{{ run.id }}/json">Download JSON</a>
+        </div>
+      </section>
+
+      <section class="summary-grid" aria-label="Run summary">
+        <div><span>Region</span><strong>{{ run.region_name }}</strong></div>
+        <div><span>Total search results</span><strong>{{ run.total_search_results }}</strong></div>
+        <div><span>Fetched articles</span><strong>{{ run.fetched_articles }}</strong></div>
+        <div><span>AI analyzed</span><strong>{{ run.ai_analyzed }}</strong></div>
+        <div><span>Rejected count</span><strong>{{ run.rejected_count }}</strong></div>
+        <div><span>Duplicates removed</span><strong>{{ run.duplicates_removed }}</strong></div>
+        <div><span>Final leads count</span><strong>{{ run.final_leads_count }}</strong></div>
+      </section>
+
+      <section class="table-section">
+        {% if leads %}
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Project name</th>
+                  <th>Region</th>
+                  <th>City</th>
+                  <th>Project type</th>
+                  <th>Stage</th>
+                  <th>Customer</th>
+                  <th>Priority</th>
+                  <th>Materials demand</th>
+                  <th>Publication date</th>
+                  <th>Source URL</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for lead in leads %}
+                  <tr>
+                    <td>{{ lead.project_name or "" }}</td>
+                    <td>{{ lead.region or "" }}</td>
+                    <td>{{ lead.city or "" }}</td>
+                    <td>{{ lead.project_type or "" }}</td>
+                    <td>{{ lead.stage or "" }}</td>
+                    <td>{{ lead.customer or "" }}</td>
+                    <td><span class="priority {{ lead.priority or '' }}">{{ lead.priority or "" }}</span></td>
+                    <td>{{ lead.materials_demand or "" }}</td>
+                    <td>{{ lead.publication_date or "" }}</td>
+                    <td>
+                      <a class="source-link" href="{{ lead.source_url }}" target="_blank" rel="noopener noreferrer">
+                        {{ lead.source_url }}
+                      </a>
+                    </td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        {% else %}
+          <div class="empty-state">No results found for this run.</div>
+        {% endif %}
+      </section>
+    </main>
+  </body>
+</html>
